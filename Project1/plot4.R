@@ -43,11 +43,6 @@ x$datetime = dmy_hms(paste(as.character(x[,1]), as.character(x[,2]), sep=" "))
 # Create a new dataframe based on dataframe x having dates 2007-02-01 through 2007-02-02
 subset <- filter(x, x$datetime <= ymd("2007-02-03"))
 
-# First set the working directory to the current project
-# Load object "subset" which has previously been generated in processData.R
-setwd("~/Coursera/ExploratoryDataAnalysis/Projects/Project1")
-load("subset.RData")
-
 # Generate a page of 4 graphs (2 x 2) of the following:
 #   1. time series line graph of Global Active Power,
 #   2. time series line graph of voltage,
@@ -55,7 +50,10 @@ load("subset.RData")
 #   4. time series line graph of Global_reactive_power,
 #  from Thu 2007-02-01 00:00:00 through Sat 2007-02-03 00:00:00.
 
-par(new=T)
+# Open PNG graphics device
+png(file="plot4.png", width=480, height=480, res=80)
+
+#par(new=T)
 par(mfrow=c(2,2))
 par(bg="gray")
 par(cex.lab=0.75)
@@ -113,12 +111,12 @@ legend("topright",
        col=legcol,
        lty=leglty,
        legend=legtxt,
-       cex = 0.7,
+       cex = 0.75,
        ncol=1,
        bty="n",
        xjust=0,
        inset=0.05,
-       y.intersp=0.3,
+       y.intersp=0.75,
        horiz=FALSE)
 
 with(subset,
@@ -128,6 +126,8 @@ with(subset,
           xlab="datetime",
           ylab="Global Reactive Power"))
 
-dev.copy(png, "plot4.png", width=480, height=480)
+#dev.copy(png, "plot4.png", width=480, height=480)
+
+# Close PNG graphics device
 dev.off()
 

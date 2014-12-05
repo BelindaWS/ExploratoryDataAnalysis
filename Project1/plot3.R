@@ -43,11 +43,6 @@ x$datetime = dmy_hms(paste(as.character(x[,1]), as.character(x[,2]), sep=" "))
 # Create a new dataframe based on dataframe x having dates 2007-02-01 through 2007-02-02
 subset <- filter(x, x$datetime <= ymd("2007-02-03"))
 
-# First set the working directory to the current project
-# Load object "subset" which has previously been generated in processData.R
-setwd("~/Coursera/ExploratoryDataAnalysis/Projects/Project1")
-load("subset.RData")
-
 # Generate a time-series line graphs of Sub_metering_1/2/3
 # from Thu 2007-02-01 00:00:00 through Sat 2007-02-03 00:00:00,
 # all appearing in the same panel.
